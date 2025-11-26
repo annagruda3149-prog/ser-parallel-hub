@@ -1,24 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>SER Parallel Hub</title>
+  <meta charset="UTF-8" />
+  <title>SER Parallel Hub – Exported Pages</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+      line-height: 1.5;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    p.description {
+      margin-bottom: 24px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    section {
+      margin-bottom: 24px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 16px;
+    }
+    li {
+      font-size: 14px;
+    }
+    a {
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    a:hover {
+      border-bottom-color: #000;
+    }
+    small {
+      opacity: 0.7;
+      font-size: 12px;
+    }
+  </style>
 </head>
 <body>
-    <h2>Arquivos Exportados</h2>
-    <ul>
-        <li><a href="p11_v01.html">p11_v01</a></li>
-        <li><a href="p11_v02.html">p11_v02</a></li>
-        <li><a href="p11_v03.html">p11_v03</a></li>
-        <li><a href="p11_v04.html">p11_v04</a></li>
-        <li><a href="p11_v05.html">p11_v05</a></li>
-        <li><a href="p11_v06.html">p11_v06</a></li>
-        <li><a href="p11_v07.html">p11_v07</a></li>
-        <li><a href="p11_v08.html">p11_v08</a></li>
-        <li><a href="p11_v09.html">p11_v09</a></li>
-        <li><a href="p11_v10.html">p11_v10</a></li>
-        <!-- Depois adicionamos todos os outros automaticamente -->
-    </ul>
+  <h1>SER Parallel Hub</h1>
+  <p class="description">
+    Lista automática das páginas exportadas (p11…p20, v01…v27). Clique em qualquer link para abrir a página em uma nova aba.
+  </p>
+
+  <div id="links"></div>
+
+  <script>
+    // Faixa de produtos e variações
+    const startP = 11;
+    const endP = 20;
+    const startV = 1;
+    const endV = 27;
+
+    const container = document.getElementById("links");
+
+    for (let p = startP; p <= endP; p++) {
+      const section = document.createElement("section");
+
+      const h2 = document.createElement("h2");
+      h2.textContent = `Produto p${p}`;
+      section.appendChild(h2);
+
+      const ul = document.createElement("ul");
+
+      for (let v = startV; v <= endV; v++) {
+        const vStr = String(v).padStart(2, "0");
+        const filename = `p${p}_v${vStr}.html`;
+
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = filename;
+        a.target = "_blank";
+        a.textContent = filename;
+
+        li.appendChild(a);
+        ul.appendChild(li);
+      }
+
+      section.appendChild(ul);
+      container.appendChild(section);
+    }
+  </script>
 </body>
 </html>
-
